@@ -8,6 +8,18 @@ const getTasks = asyncHandler(async (req, res) => {
     res.json(tasks)
 })
 
+// get task by id
+
+const getTaskById = asyncHandler(async (req, res) => {
+    const task = await Task.findById(req.params.id)
+
+    if (task) {
+        res.json(task)
+    } else {
+        res.status(400).json({message:"Task not found"})
+    }
+})
+
 // create a task
 
 const createTask = asyncHandler(async (req, res) => {
@@ -27,4 +39,5 @@ const createTask = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = {getTasks, createTask}
+
+module.exports = {getTasks, createTask, getTaskById}
