@@ -19,8 +19,10 @@ connectDB()
 
 // load routes
 const userRouter = require('./routes/users')
+const taskRouter = require('./routes/tasks')
 
 app.use('/api/users', userRouter)
+app.use('/api/tasks', taskRouter)
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port:${PORT}`)
