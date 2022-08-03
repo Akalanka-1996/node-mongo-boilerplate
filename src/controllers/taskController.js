@@ -30,6 +30,7 @@ const createTask = asyncHandler(async (req, res) => {
         throw new Error("Please fill all the fields")
     } else {
         const task = new Task({
+            user: req.user._id,
             name
         })
 
