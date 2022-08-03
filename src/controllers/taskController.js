@@ -68,6 +68,10 @@ const updateTask = asyncHandler(async (req, res) => {
 const deleteTask = asyncHandler(async (req, res) => {
     const task = await Task.findById(req.params.id)
 
+    if (task.user.toString() !== req.user._id.toString()) {
+        throw new Error("You cannot perform this action!")
+    }
+
     if(task) {
         await task.remove()
         res.json({message: "Task removed!"})
