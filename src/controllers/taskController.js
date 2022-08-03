@@ -47,6 +47,13 @@ const updateTask = asyncHandler(async (req, res) => {
 
     const task = await Task.findById(req.params.id)
 
+
+    // check whether task belong to the user
+
+    if (task.user.toString() !== req.user._id.toString()) {
+        throw new Error("You cannot perform this action!")
+      }
+
     if(task) {
         task.name = name
 
